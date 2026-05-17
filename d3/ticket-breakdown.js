@@ -27,11 +27,13 @@ const formatSignedUSD = value => `${value >= 0 ? "+" : "−"}${formatUSD(Math.ab
 const parseDate = d3.timeParse("%Y-%m-%d");
 
 let rows = [];
-let state = {
+const DEFAULT_STATE = {
   airline: "All airlines",
-  region: "All regions",
-  routeClass: "All route classes"
+  region: "Middle East",
+  routeClass: "Short-Haul Regional"
 };
+
+let state = { ...DEFAULT_STATE };
 
 const els = {
   airline: d3.select("#airline-filter"),
@@ -47,7 +49,8 @@ const els = {
   fuelChangePct: d3.select("#fuel-change-pct"),
   baseDelta: d3.select("#base-delta"),
   taxDelta: d3.select("#tax-delta"),
-  recordsUsed: d3.select("#records-used")
+  recordsUsed: d3.select("#records-used"),
+  storyNote: d3.select("#story-note")
 };
 
 d3.csv(DATA_URL, d => ({
@@ -78,7 +81,7 @@ function initFilters() {
   els.region.on("change", event => { state.region = event.target.value; update(); });
   els.routeClass.on("change", event => { state.routeClass = event.target.value; update(); });
   els.reset.on("click", () => {
-    state = { airline: "All airlines", region: "All regions", routeClass: "All route classes" };
+    state = { ...DEFAULT_STATE };
     els.airline.property("value", state.airline);
     els.region.property("value", state.region);
     els.routeClass.property("value", state.routeClass);
@@ -131,18 +134,20 @@ function inPeriod(d, period) {
 
 function aggregate(data, period) {
   const periodRows = data.filter(d => inPeriod(d, period));
-  const avg = key => d3.mean(periodRows, d => d[key]) ?? 0;
+  // Median is used instead of mean so one extreme long-haul or premium record
+  // does not make the default ticket look unrealistically large.
+  const typical = key => d3.median(periodRows, d => d[key]) ?? 0;
 
   return {
     label: period.label,
     sub: period.sub,
     rows: periodRows.length,
-    base_fare_usd: avg("base_fare_usd"),
-    fuel_surcharge_usd: avg("fuel_surcharge_usd"),
-    taxes_fees_usd: avg("taxes_fees_usd"),
-    total_fare_usd: avg("total_fare_usd"),
-    jet_fuel_usd_barrel: avg("jet_fuel_usd_barrel"),
-    brent_crude_usd: avg("brent_crude_usd")
+    base_fare_usd: typical("base_fare_usd"),
+    fuel_surcharge_usd: typical("fuel_surcharge_usd"),
+    taxes_fees_usd: typical("taxes_fees_usd"),
+    total_fare_usd: typical("total_fare_usd"),
+    jet_fuel_usd_barrel: typical("jet_fuel_usd_barrel"),
+    brent_crude_usd: typical("brent_crude_usd")
   };
 }
 
@@ -177,6 +182,18 @@ function updateNumbers(before, during) {
   els.baseDelta.text(formatSignedUSD(baseDelta));
   els.taxDelta.text(formatSignedUSD(taxDelta));
   els.recordsUsed.text(`${before.rows + during.rows}`);
+
+  const beforeFuelShare = before.total_fare_usd ? before.fuel_surcharge_usd / before.total_fare_usd : 0;
+  const duringFuelShare = during.total_fare_usd ? during.fuel_surcharge_usd / during.total_fare_usd : 0;
+  const fuelShareText = `${d3.format(".0%")(beforeFuelShare)} → ${d3.format(".0%")(duringFuelShare)}`;
+
+  if (els.storyNote && !els.storyNote.empty()) {
+    const mainDriver = Math.abs(baseDelta) > Math.abs(fuelDelta)
+      ? "Base fare still carries the largest part of the total change in this slice."
+      : "Fuel surcharge carries the largest part of the total change in this slice.";
+
+    els.storyNote.text(`Fuel becomes more visible (${fuelShareText} of the ticket). ${mainDriver}`);
+  }
 }
 
 function drawChart(periodData) {
@@ -229,7 +246,7 @@ function drawChart(periodData) {
     .attr("fill", "#6b86a6")
     .attr("font-family", "Space Mono, monospace")
     .attr("font-size", 10)
-    .text("Average ticket price (USD)");
+    .text("Median ticket price (USD)");
 
   periodData.forEach(period => {
     let x0 = x(0);

@@ -437,3 +437,12 @@ select,
   stroke-width: 3px;
   stroke-linejoin: round;
 }
+
+/* More readable dynamic story note in CH·04 stub */
+.stub-note#story-note {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
