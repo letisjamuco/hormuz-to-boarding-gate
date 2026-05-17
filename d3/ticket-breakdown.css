@@ -418,3 +418,22 @@ select,
   #ticket-chart { height: 340px; }
   .ticket-stub { grid-template-columns: 1fr; }
 }
+
+/* Small-segment label callouts for CH·04 ticket bars */
+.fuel-callout-line {
+  stroke: #d65a2e;
+  stroke-width: 1.1;
+  stroke-dasharray: 2 3;
+  opacity: 0.8;
+}
+
+.fuel-callout-label {
+  fill: #d65a2e;
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}

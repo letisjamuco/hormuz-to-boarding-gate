@@ -269,23 +269,56 @@ function drawChart(periodData) {
       .attr("width", d => Math.max(1, x(d.value) - x(0)));
 
     // Recompute positions for labels.
+    // If the fuel segment is too small, show its value as a small external callout
+    // so the "before shock" surcharge is still visible.
     let labelX = x(0);
     values.forEach(d => {
       const w = x(d.value) - x(0);
+      const segmentCenter = labelX + w / 2;
+
       if (w > 54) {
         svg.append("text")
           .attr("class", "bar-label")
-          .attr("x", labelX + w / 2)
+          .attr("x", segmentCenter)
           .attr("y", y0 + y.bandwidth() / 2 + 4)
           .attr("text-anchor", "middle")
-          .attr("fill", d.key === "fuel_surcharge_usd" ? "#ffffff" : "#ffffff")
+          .attr("fill", "#ffffff")
           .style("opacity", 0)
           .text(`${d.short} ${formatUSD(d.value)}`)
           .transition()
           .delay(350)
           .duration(300)
           .style("opacity", 1);
+      } else if (d.key === "fuel_surcharge_usd" && d.value > 0) {
+        const calloutY = period.label === "Before shock"
+          ? y0 - 10
+          : y0 + y.bandwidth() + 18;
+
+        svg.append("line")
+          .attr("class", "fuel-callout-line")
+          .attr("x1", segmentCenter)
+          .attr("x2", segmentCenter)
+          .attr("y1", period.label === "Before shock" ? y0 : y0 + y.bandwidth())
+          .attr("y2", calloutY + (period.label === "Before shock" ? 4 : -8))
+          .style("opacity", 0)
+          .transition()
+          .delay(350)
+          .duration(300)
+          .style("opacity", 1);
+
+        svg.append("text")
+          .attr("class", "fuel-callout-label")
+          .attr("x", segmentCenter)
+          .attr("y", calloutY)
+          .attr("text-anchor", "middle")
+          .style("opacity", 0)
+          .text(`Fuel ${formatUSD(d.value)}`)
+          .transition()
+          .delay(350)
+          .duration(300)
+          .style("opacity", 1);
       }
+
       labelX += w;
     });
 
