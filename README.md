@@ -57,38 +57,3 @@ The Kaggle dataset is **scenario-based, not factual history**. We use it to illu
 ## License
 
 Source code is released under the MIT License. The Kaggle dataset retains its original license. Real-world datasets remain the property of their respective publishers (EIA, FRED, OPEC, IEA, OurAirports, ACLED, BTS, Eurocontrol, World Bank).
-
-## Acknowledgements
-
-Course staff for guidance throughout the semester. The `Inside Airbnb` and `Five Design-Sheet` methodologies as inspiration for our design process. The dataset author Z. K. S. Khurram for compiling the Kaggle scenario tables that form the backbone of our analysis.
-
-## CH·05 v8 notes
-
-The D3 route component is now embedded in `index.html` via:
-
-```html
-<iframe src="d3/route-map.html" class="d3-embed-frame"></iframe>
-```
-
-The component uses:
-
-- Leaflet + OpenStreetMap for the basemap
-- D3 for route aggregation, arcs, ranking table, filters, fuel-context chart, tooltips and linked selection
-- `d3/data/routes.csv` from the cleaned Kaggle route-cost table
-- `d3/data/city-coordinates.csv` for origin/destination positions
-- `d3/data/monthly-fuel.csv` derived from cleaned FRED Brent and Jet Fuel data
-
-Run the website through a local server, not by double-clicking the HTML file, because browsers may block CSV loading from `file://`.
-
-Example:
-
-```bash
-cd website
-python3 -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000
-```
