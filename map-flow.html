@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>html,body{margin:0;padding:0;height:100%;overflow:hidden}#map{width:100%;height:100%}</style>
+</head><body>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var map=L.map('map',{scrollWheelZoom:true,zoomControl:true}).setView([25.5,54],6);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:12,attribution:'© OSM'}).addTo(map);
+var hz=[26.35,56.65];
+var origins=[
+  {name:'Saudi Arabia (Ras Tanura)',ll:[26.64,50.17],vol:6.2},
+  {name:'Iraq (Basra)',ll:[29.73,48.82],vol:3.4},
+  {name:'UAE (Fujairah)',ll:[25.13,56.35],vol:2.8},
+  {name:'Kuwait (Mina al-Ahmadi)',ll:[29.06,48.16],vol:1.8},
+  {name:'Qatar (Ras Laffan)',ll:[25.92,51.56],vol:1.4},
+  {name:'Iran (Kharg Island)',ll:[29.23,50.33],vol:1.7}
+];
+var mx=6.2;
+origins.forEach(function(o){
+  var mid=[(o.ll[0]+hz[0])/2+.8,(o.ll[1]+hz[1])/2-1.2];
+  var w=Math.max(2,(o.vol/mx)*7);
+  L.polyline([o.ll,mid,hz],{color:'#d36a38',weight:w,opacity:.55,smoothFactor:2}).addTo(map).bindPopup('<strong>'+o.name+'</strong><br>~'+o.vol+'M b/d through Hormuz');
+  L.circleMarker(o.ll,{radius:5,color:'#0f4d46',fillColor:'#d36a38',fillOpacity:.8,weight:1}).addTo(map).bindPopup('<strong>'+o.name+'</strong><br>~'+o.vol+'M barrels/day');
+});
+L.circleMarker(hz,{radius:8,color:'#d36a38',fillColor:'#d36a38',fillOpacity:.25,weight:2,dashArray:'4 4'}).addTo(map);
+L.circleMarker(hz,{radius:3,color:'#d36a38',fillColor:'#d36a38',fillOpacity:1,weight:0}).addTo(map).bindPopup('<strong>Strait of Hormuz</strong><br>All routes converge here');
+</script>
+</body></html>

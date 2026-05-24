@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+html,body{margin:0;padding:0;height:100%;overflow:hidden}
+#map{width:100%;height:100%}
+.choke-tooltip{font-family:'Space Mono',monospace;font-size:11px}
+.choke-tooltip strong{display:block;margin-bottom:2px}
+</style>
+</head><body>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script>
+var map=L.map('map',{scrollWheelZoom:true,zoomControl:true}).setView([20,40],2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:10,attribution:'© OSM'}).addTo(map);
+
+var markers={};
+Promise.all([
+  d3.csv('data/processed/chokepoint_locations.csv'),
+  d3.csv('data/processed/chokepoints_summary.csv')
+]).then(function([locs,summaries]){
+  var s26=summaries.filter(function(d){return d.period==='2026 YTD'});
+  var maxTk=d3.max(s26,function(d){return +d.avg_tanker})||1;
+  locs.forEach(function(loc){
+    var s=s26.find(function(d){return d.portid===loc.portid});
+    var tk=s?+s.avg_tanker:0;
+    var isH=loc.portid==='chokepoint6';
+    var r=Math.max(4,Math.sqrt(tk/maxTk)*24);
+    var m=L.circleMarker([+loc.lat,+loc.lon],{
+      radius:r,
+      color:isH?'#d36a38':'#0f4d46',
+      fillColor:isH?'#d36a38':'#74b8a7',
+      fillOpacity:isH?.65:.35,
+      weight:isH?2.5:1
+    }).addTo(map);
+    var popup='<div class="choke-tooltip"><strong>'+loc.portname+'</strong>'+
+      'Avg tankers/day: '+(s?(+s.avg_tanker).toFixed(1):'—')+'<br>'+
+      'Tanker share: '+(s?Math.round(+s.tanker_share*100)+'%':'—')+'<br>'+
+      'Avg total/day: '+(s?(+s.avg_total).toFixed(1):'—')+'</div>';
+    m.bindPopup(popup);
+    markers[loc.portid]=m;
+    
+    // Post message to parent when clicked
+    m.on('click',function(){
+      window.parent.postMessage({type:'chokepoint-click',portid:loc.portid,portname:loc.portname},'*');
+    });
+  });
+});
+
+// Listen for highlight messages from parent
+window.addEventListener('message',function(ev){
+  if(ev.data&&ev.data.type==='highlight-chokepoint'){
+    var pid=ev.data.portid;
+    Object.keys(markers).forEach(function(k){
+      var m=markers[k];
+      if(k===pid){
+        m.setStyle({color:'#f5c542',fillColor:'#f5c542',fillOpacity:.8,weight:3});
+      } else if(k==='chokepoint6'){
+        m.setStyle({color:'#d36a38',fillColor:'#d36a38',fillOpacity:.65,weight:2.5});
+      } else {
+        m.setStyle({color:'#0f4d46',fillColor:'#74b8a7',fillOpacity:.35,weight:1});
+      }
+    });
+  }
+  if(ev.data&&ev.data.type==='reset-highlight'){
+    Object.keys(markers).forEach(function(k){
+      var m=markers[k];
+      var isH=k==='chokepoint6';
+      m.setStyle({color:isH?'#d36a38':'#0f4d46',fillColor:isH?'#d36a38':'#74b8a7',fillOpacity:isH?.65:.35,weight:isH?2.5:1});
+    });
+  }
+});
+</script>
+</body></html>

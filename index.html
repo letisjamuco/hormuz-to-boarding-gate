@@ -1,84 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hormuz Under Pressure</title>
-  <meta name="description" content="A real-data D3 story about the Strait of Hormuz, maritime traffic, chokepoints and oil market signals." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Bebas+Neue&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-
-  <!-- ── NAV ──────────────────────────────────────────────── -->
   <nav class="nav">
-    <a class="nav__brand" href="#hero">
-      <span class="nav__code">M126</span>
-      <span class="nav__sep">·</span>
-      <span class="nav__title">HORMUZ UNDER PRESSURE</span>
-    </a>
+    <a class="nav__brand" href="#hero"><span class="nav__code">M126</span><span class="nav__sep">·</span><span class="nav__title">HORMUZ UNDER PRESSURE</span></a>
     <ul class="nav__menu">
-      <li><a href="#chapter-1">01 Map</a></li>
-      <li><a href="#chapter-2">02 Prices</a></li>
-      <li><a href="#chapter-3">03 Traffic</a></li>
-      <li><a href="#chapter-4">04 System</a></li>
-      <li><a href="#chapter-5">05 Impact</a></li>
+      <li><a href="#ch1">01 Gate</a></li>
+      <li><a href="#ch2">02 System</a></li>
+      <li><a href="#ch3">03 Vessels</a></li>
+      <li><a href="#ch4">04 Traffic</a></li>
+      <li><a href="#ch5">05 Routes</a></li>
+      <li><a href="#ch6">06 Prices</a></li>
       <li><a href="#video-section">Video</a></li>
       <li><a href="#credits">Credits</a></li>
     </ul>
-    <div class="nav__progress" aria-hidden="true">
-      <div class="nav__progress-track"></div>
+    <div class="nav__progress"><div class="nav__progress-track"></div>
       <svg class="nav__ship" viewBox="0 0 36 20" width="24" height="14"><path fill="currentColor" d="M2 12 L6 12 L6 6 L9 3 L28 3 L31 6 L31 12 L34 12 L30 18 L6 18 L2 12Z"/><rect x="8" y="5" width="5" height="4" rx="1" fill="rgba(255,255,255,.6)"/><rect x="15" y="5" width="5" height="4" rx="1" fill="rgba(255,255,255,.6)"/><rect x="22" y="5" width="5" height="4" rx="1" fill="rgba(255,255,255,.6)"/></svg>
     </div>
   </nav>
 
-  <!-- ── HERO ─────────────────────────────────────────────── -->
   <header class="hero" id="hero">
     <div class="hero__grid container">
       <div class="hero__copy">
-        <p class="eyebrow">IMF PortWatch · FRED/EIA · OpenStreetMap</p>
+        <p class="eyebrow">IMF PortWatch · FRED/EIA · fuelprices.gr</p>
         <h1><span>Hormuz</span> Under Pressure</h1>
-        <p class="hero__lead">A visual story about how a narrow maritime chokepoint concentrates energy risk, using IMF PortWatch shipping signals and FRED/EIA price data.</p>
-        <div class="hero__actions">
-          <a class="btn" href="#chapter-1">Start the story</a>
-          <a class="btn btn--ghost" href="#credits">Data sources</a>
-        </div>
+        <p class="hero__lead">How a narrow maritime chokepoint concentrates energy risk — from tanker traffic and oil benchmarks to fuel prices at Greek petrol stations.</p>
+        <div class="hero__actions"><a class="btn" href="#ch1">Start the story</a><a class="btn btn--ghost" href="#credits">Data sources</a></div>
       </div>
-      <!-- Ship manifest / intelligence card -->
       <div class="manifest-card" aria-hidden="true">
-        <div class="manifest-card__header">
-          <span>MARITIME INTELLIGENCE BRIEF</span>
-          <span class="manifest-card__status">● ACTIVE</span>
-        </div>
+        <div class="manifest-card__header"><span>MARITIME INTELLIGENCE BRIEF</span><span class="manifest-card__status">● ACTIVE</span></div>
         <div class="manifest-card__body">
-          <div class="manifest-card__row">
-            <div class="manifest-card__field"><label>SUBJECT</label><span>Strait of Hormuz</span></div>
-            <div class="manifest-card__field"><label>POSITION</label><span>26.3°N · 56.9°E</span></div>
-          </div>
-          <div class="manifest-card__row">
-            <div class="manifest-card__field"><label>WIDTH</label><span>~33 km narrowest</span></div>
-            <div class="manifest-card__field"><label>DAILY OIL FLOW</label><span>~20M barrels/day</span></div>
-          </div>
+          <div class="manifest-card__row"><div class="manifest-card__field"><label>SUBJECT</label><span>Strait of Hormuz</span></div><div class="manifest-card__field"><label>POSITION</label><span>26.3°N · 56.9°E</span></div></div>
+          <div class="manifest-card__row"><div class="manifest-card__field"><label>WIDTH</label><span>~33 km narrowest</span></div><div class="manifest-card__field"><label>DAILY OIL FLOW</label><span>~20M bbl/day</span></div></div>
           <div class="manifest-card__divider"></div>
-          <div class="manifest-card__row">
-            <div class="manifest-card__field manifest-card__field--alert"><label>EVENT</label><span>HORMUZ-26</span></div>
-            <div class="manifest-card__field manifest-card__field--alert"><label>DATE</label><span>1 Mar 2026</span></div>
-            <div class="manifest-card__field manifest-card__field--alert"><label>ALERT</label><span>RED</span></div>
-          </div>
-          <div class="manifest-card__row">
-            <div class="manifest-card__field"><label>TRANSIT CHANGE</label><span id="hero-transit-change">loading…</span></div>
-            <div class="manifest-card__field"><label>BRENT CRUDE</label><span id="hero-brent">loading…</span></div>
-          </div>
+          <div class="manifest-card__row"><div class="manifest-card__field manifest-card__field--alert"><label>EVENT</label><span>HORMUZ-26</span></div><div class="manifest-card__field manifest-card__field--alert"><label>DATE</label><span>1 Mar 2026</span></div><div class="manifest-card__field manifest-card__field--alert"><label>ALERT</label><span>RED</span></div></div>
+          <div class="manifest-card__row"><div class="manifest-card__field"><label>TRANSIT CHANGE</label><span id="hero-transit-change">loading…</span></div><div class="manifest-card__field"><label>BRENT CRUDE</label><span id="hero-brent">loading…</span></div></div>
         </div>
-        <div class="manifest-card__footer">
-          <span>SOURCE: IMF PORTWATCH · FRED/EIA</span>
-          <span>CLASSIFIED: M126/NKUA</span>
-        </div>
+        <div class="manifest-card__footer"><span>SOURCE: IMF PORTWATCH · FRED/EIA</span><span>CLASSIFIED: M126/NKUA</span></div>
       </div>
     </div>
   </header>
@@ -86,13 +53,13 @@
   <main>
     <section class="storyline container">
       <div class="storyline__step"><span>1</span><strong>Locate the gate</strong><p>Where the risk sits.</p></div>
-      <div class="storyline__step"><span>2</span><strong>Check the market</strong><p>What prices signal.</p></div>
+      <div class="storyline__step"><span>2</span><strong>Compare globally</strong><p>Why Hormuz matters most.</p></div>
       <div class="storyline__step"><span>3</span><strong>Read the ships</strong><p>How traffic collapsed.</p></div>
-      <div class="storyline__step"><span>4</span><strong>Compare the system</strong><p>Why Hormuz matters most.</p></div>
+      <div class="storyline__step"><span>4</span><strong>See the impact</strong><p>From tankers to fuel pumps.</p></div>
     </section>
 
-    <!-- CH·01 ──────────────────────────────────────────────── -->
-    <section class="chapter" id="chapter-1">
+    <!-- CH01 — WHERE IS HORMUZ -->
+    <section class="chapter" id="ch1">
       <div class="container chapter__grid chapter__grid--map">
         <div class="chapter__copy">
           <p class="chapter__kicker">CH·01 · THE NARROW GATE</p>
@@ -107,190 +74,176 @@
           <p class="source-line">Data: U.S. EIA, Today in Energy, June 2025.</p>
         </div>
         <div class="map-card">
-          <div class="map-wrap"><div id="hormuz-map"></div></div>
-          <div class="map-caption">Interactive: OpenStreetMap · Orange area: Strait of Hormuz</div>
+          <iframe src="map-hormuz.html" class="map-iframe" title="Strait of Hormuz map" loading="lazy"></iframe>
+          <div class="map-caption">Interactive: zoom with mouse wheel · OpenStreetMap</div>
         </div>
       </div>
     </section>
 
-    <!-- CH·02 ──────────────────────────────────────────────── -->
-    <section class="chapter" id="chapter-2">
-      <div class="container chapter__grid">
-        <div class="chapter__copy">
-          <p class="chapter__kicker">CH·02 · MARKET SIGNAL</p>
-          <h2>Before ships, look at prices.</h2>
-          <p>Oil markets are the first place where tension around Hormuz becomes visible. Brent crude and jet fuel benchmarks from FRED/EIA show the trend in 2026.</p>
-          <p class="chapter__note">Use the toggle to switch between the full 2026 view and a zoomed-in view around the HORMUZ-26 event.</p>
-          <p class="source-line">Data: FRED / U.S. EIA, DCOILBRENTEU and DJFUELUSGULF.</p>
+    <!-- CH02 — HORMUZ vs THE WORLD -->
+    <section class="chapter" id="ch2">
+      <div class="container">
+        <div class="chapter__copy chapter__copy--wide">
+          <p class="chapter__kicker">CH·02 · HORMUZ vs THE WORLD</p>
+          <h2>Why does Hormuz matter more than any other chokepoint?</h2>
+          <p>There are 28 maritime chokepoints tracked by IMF PortWatch. Hormuz is not always the busiest by total ships — but when you look at <em>tanker traffic</em>, it stands apart. Click a chokepoint on the map or a bar in the ranking — they're linked.</p>
         </div>
-        <div class="viz-card" data-chart-card="prices">
+        <div class="map-card">
+          <iframe src="map-world.html" id="world-map-iframe" class="map-iframe map-iframe--short" title="World chokepoints map" loading="lazy"></iframe>
+          <div class="map-caption">Circle size = avg daily tankers. Hormuz in orange. Click any chokepoint for details.</div>
+        </div>
+        <div class="viz-card" style="margin-top:14px">
           <div class="viz-card__head">
-            <div><span class="mini-kicker">daily prices</span><h3>Brent crude &amp; jet fuel</h3></div>
-            <div class="control-pills" id="price-periods"></div>
+            <div><span class="mini-kicker">ranking · 2026 Jan–May</span><h3>Chokepoint comparison</h3></div>
+            <select id="rank-metric" class="select-control">
+              <option value="avg_tanker">Average daily tankers</option>
+              <option value="avg_total">Average daily transits (all types)</option>
+              <option value="avg_capacity">Average daily capacity</option>
+              <option value="tanker_share">Tanker share of traffic</option>
+            </select>
           </div>
-          <div class="metric-row" id="price-metrics"></div>
-          <svg class="chart" id="price-chart" role="img" aria-label="Price chart"></svg>
-          <p class="chart-read" id="price-read"></p>
+          <svg class="chart chart--rank" id="rank-chart"></svg>
+          <p class="chart-read" id="rank-read"></p>
         </div>
       </div>
     </section>
 
-    <!-- CH·03 ──────────────────────────────────────────────── -->
-    <section class="chapter" id="chapter-3">
+    <!-- CH03 — VESSEL MIX + GLOSSARY -->
+    <section class="chapter" id="ch3">
       <div class="container chapter__grid">
         <div class="chapter__copy">
-          <p class="chapter__kicker">CH·03 · SHIPPING SIGNAL</p>
+          <p class="chapter__kicker">CH·03 · WHAT KIND OF SHIPS?</p>
+          <h2>Not all ships carry the same meaning.</h2>
+          <p>Tankers dominate the Hormuz vessel mix — making it primarily an <em>energy</em> chokepoint, not just a shipping lane. Hover over a vessel type to learn more.</p>
+          <div class="vessel-glossary" id="vessel-glossary">
+            <div class="vg-item" data-type="tanker"><dt><a href="https://en.wikipedia.org/wiki/Tanker_(ship)" target="_blank" rel="noopener">Tankers ↗</a></dt><dd>Ships carrying bulk liquids: crude oil, petroleum products, or gas cargoes.</dd></div>
+            <div class="vg-item" data-type="container"><dt><a href="https://en.wikipedia.org/wiki/Container_ship" target="_blank" rel="noopener">Containers ↗</a></dt><dd>Ships carrying standardised container boxes with consumer goods.</dd></div>
+            <div class="vg-item" data-type="dry_bulk"><dt><a href="https://en.wikipedia.org/wiki/Bulk_carrier" target="_blank" rel="noopener">Dry bulk ↗</a></dt><dd>Ships carrying unpackaged solids: grain, ore, coal.</dd></div>
+            <div class="vg-item" data-type="general_cargo"><dt><a href="https://en.wikipedia.org/wiki/General_cargo_ship" target="_blank" rel="noopener">General cargo ↗</a></dt><dd>Mixed goods not counted as containers, tankers or bulk.</dd></div>
+            <div class="vg-item" data-type="roro"><dt><a href="https://en.wikipedia.org/wiki/Roll-on/roll-off" target="_blank" rel="noopener">Ro-Ro ↗</a></dt><dd>Roll-on/roll-off: vehicles drive on/off the ship.</dd></div>
+          </div>
+          <p class="source-line">Data: IMF PortWatch, vessel-class transit calls for chokepoint6.</p>
+        </div>
+        <div class="viz-card">
+          <div class="viz-card__head"><div><span class="mini-kicker">composition · 2026 Jan–May</span><h3>Vessel mix through Hormuz</h3></div></div>
+          <svg class="chart chart--mix" id="mix-chart"></svg>
+          <p class="chart-read" id="mix-read"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH04 — TRAFFIC SIGNAL (focused on tankers) -->
+    <section class="chapter" id="ch4">
+      <div class="container chapter__grid">
+        <div class="chapter__copy">
+          <p class="chapter__kicker">CH·04 · TANKER TRAFFIC</p>
           <h2>Traffic through Hormuz collapsed.</h2>
-          <p>Daily transit calls through the Strait. The 7-day average smooths daily noise. Notice the sharp drop in March 2026.</p>
-          <p class="chapter__note">The HORMUZ-26 event marker in the PortWatch disruptions database is shown as an orange dashed line.</p>
+          <p>Since tankers carry the energy, this is the signal that matters. Daily transit calls through the Strait — total and tanker — with 7-day average. Notice the sharp drop in March 2026.</p>
+          <p class="chapter__note">The HORMUZ-26 event marker (orange dashed line) is from the PortWatch disruptions database.</p>
           <p class="source-line">Data: IMF PortWatch, Daily Chokepoint Transit Calls.</p>
         </div>
         <div>
-          <div class="viz-card" data-chart-card="traffic">
+          <div class="viz-card">
             <div class="viz-card__head">
               <div><span class="mini-kicker">daily transits · 7-day avg</span><h3>Hormuz traffic</h3></div>
               <div class="control-pills" id="traffic-periods"></div>
             </div>
             <div class="metric-row" id="traffic-metrics"></div>
-            <svg class="chart" id="traffic-chart" role="img" aria-label="Hormuz traffic chart"></svg>
+            <svg class="chart" id="traffic-chart"></svg>
             <p class="chart-read" id="traffic-read"></p>
           </div>
-          <!-- Flow map -->
-          <div class="viz-card flow-map-card">
-            <div class="viz-card__head">
-              <div><span class="mini-kicker">schematic flow</span><h3>Oil export routes through Hormuz</h3></div>
-            </div>
-            <div class="map-wrap"><div id="flow-map"></div></div>
-            <p class="chart-read">Major oil-exporting ports whose cargoes transit the Strait. Arc thickness ∝ estimated daily tanker volume. Routes are illustrative, not AIS trajectories.</p>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- CH·04 ─────────────────────────────────────────────── -->
-    <section class="chapter" id="chapter-4">
+    <!-- CH05 — ROUTES + IMPACT TIMELINE -->
+    <section class="chapter" id="ch5">
       <div class="container">
         <div class="chapter__copy chapter__copy--wide">
-          <p class="chapter__kicker">CH·04 · HORMUZ vs THE WORLD</p>
-          <h2>Why does Hormuz matter more than any other chokepoint?</h2>
-          <p>There are 28 maritime chokepoints tracked by IMF PortWatch. Hormuz is not always the busiest by total ships — but when you look at <em>tanker traffic</em> and <em>energy capacity</em>, it stands apart. This section shows you where each chokepoint sits and how they compare.</p>
+          <p class="chapter__kicker">CH·05 · ROUTES &amp; IMPACT</p>
+          <h2>Where do the tankers go — and what happened after HORMUZ-26?</h2>
+          <p>Oil-exporting ports around the Gulf funnel their cargoes through Hormuz. When the disruption hit, transits, tankers and Brent crude all responded.</p>
         </div>
-        <!-- World map of all 28 chokepoints -->
-        <div class="viz-card">
-          <div class="viz-card__head">
-            <div><span class="mini-kicker">28 chokepoints worldwide</span><h3>Global maritime bottlenecks</h3></div>
-          </div>
-          <div class="map-wrap"><div id="world-map"></div></div>
-          <p class="chart-read">All 28 chokepoints tracked by IMF PortWatch. Circle size = average daily tanker transits. Hormuz highlighted in orange.</p>
+        <div class="map-card">
+          <iframe src="map-flow.html" class="map-iframe" title="Oil export routes through Hormuz" loading="lazy"></iframe>
+          <div class="map-caption">Arc thickness ∝ estimated daily tanker volume. Routes are illustrative, not AIS trajectories. Zoom with mouse wheel.</div>
         </div>
-        <!-- Side-by-side: ranking + vessel mix -->
-        <div class="ch4-grid">
-          <div class="viz-card">
-            <div class="viz-card__head">
-              <div><span class="mini-kicker">ranking · 2026 Jan–May</span><h3>Chokepoint comparison</h3></div>
-              <div class="controls-stack">
-                <select id="rank-metric" class="select-control" aria-label="Ranking metric">
-                  <option value="avg_tanker">Average daily tankers</option>
-                  <option value="avg_total">Average daily transits (all types)</option>
-                  <option value="avg_capacity">Average daily capacity</option>
-                  <option value="tanker_share">Tanker share of traffic</option>
-                </select>
-              </div>
-            </div>
-            <svg class="chart chart--rank" id="rank-chart" role="img" aria-label="Chokepoint ranking"></svg>
-            <p class="chart-read" id="rank-read"></p>
-          </div>
-          <div class="viz-card">
-            <div class="viz-card__head">
-              <div><span class="mini-kicker">composition · 2026 Jan–May</span><h3>What kind of ships pass through Hormuz?</h3></div>
-            </div>
-            <svg class="chart chart--mix" id="mix-chart" role="img" aria-label="Vessel mix"></svg>
-            <p class="chart-read">Tankers dominate the Hormuz vessel mix — making it primarily an energy chokepoint, not just a shipping lane.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CH·05 ──────────────────────────────────────────────── -->
-    <section class="chapter" id="chapter-5">
-      <div class="container">
-        <div class="chapter__copy chapter__copy--wide">
-          <p class="chapter__kicker">CH·05 · THE IMPACT</p>
-          <h2>Action → reaction. What happened after HORMUZ-26?</h2>
-          <p>On 1 March 2026, the PortWatch disruptions database recorded the HORMUZ-26 event. Here is what the data shows in one synchronized view: transits, tanker traffic, and oil price — all aligned to the same timeline.</p>
-        </div>
-        <div class="viz-card">
-          <div class="viz-card__head">
-            <div><span class="mini-kicker">synchronized timeline · Jan–May 2026</span><h3>Three signals, one event</h3></div>
-          </div>
-          <svg class="chart chart--impact" id="impact-chart" role="img" aria-label="Impact timeline"></svg>
+        <div class="viz-card" style="margin-top:14px">
+          <div class="viz-card__head"><div><span class="mini-kicker">synchronized timeline · Jan–May 2026</span><h3>Three signals, one event</h3></div></div>
+          <svg class="chart chart--impact" id="impact-chart"></svg>
           <p class="chart-read" id="impact-read"></p>
         </div>
-        <!-- Before/After summary -->
         <div class="before-after-grid" id="before-after-grid"></div>
+      </div>
+    </section>
+
+    <!-- CH06 — PRICES (global + Greece) -->
+    <section class="chapter" id="ch6">
+      <div class="container">
+        <div class="chapter__copy chapter__copy--wide">
+          <p class="chapter__kicker">CH·06 · FROM BARREL TO PUMP</p>
+          <h2>How the Hormuz shock reaches Greek fuel stations.</h2>
+          <p>Brent crude and jet fuel benchmarks show the global market reaction. But the effect is also visible at the local level: Greek petrol station prices tracked by the Hellenic Ministry of Development.</p>
+        </div>
+        <div class="ch6-grid">
+          <div class="viz-card">
+            <div class="viz-card__head"><div><span class="mini-kicker">global benchmarks</span><h3>Brent crude &amp; jet fuel</h3></div></div>
+            <svg class="chart" id="price-chart"></svg>
+            <p class="chart-read" id="price-read"></p>
+          </div>
+          <div class="viz-card">
+            <div class="viz-card__head">
+              <div><span class="mini-kicker">Greece · weekly average</span><h3>Retail fuel prices (€/litre)</h3></div>
+              <div class="control-pills" id="greece-fuel-pills"></div>
+            </div>
+            <svg class="chart" id="greece-chart"></svg>
+            <p class="chart-read" id="greece-read"></p>
+          </div>
+        </div>
+        <div class="viz-card" style="margin-top:14px">
+          <div class="viz-card__head"><div><span class="mini-kicker">Greece · A95 by prefecture</span><h3>Which prefectures pay most?</h3></div></div>
+          <svg class="chart chart--rank" id="nomos-chart"></svg>
+          <p class="chart-read">Latest weekly average for Unleaded 95 by prefecture. Islands typically pay the highest prices. Data: fuelprices.gr, Hellenic Ministry of Development.</p>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- VIDEO ──────────────────────────────────────────────── -->
+  <!-- VIDEO -->
   <section class="chapter chapter--video" id="video-section">
     <div class="container">
-      <div class="chapter__copy chapter__copy--wide">
-        <p class="chapter__kicker">VIDEO · FINAL PRESENTATION</p>
-        <h2>Walkthrough of the project.</h2>
-      </div>
-      <div class="video-placeholder">
-        <div class="video-placeholder__inner">
-          <svg viewBox="0 0 64 64" width="42" height="42" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="2.5"/><polygon points="26,20 50,32 26,44" fill="currentColor"/></svg>
-          <p>Video will be embedded after the final recording.</p>
-        </div>
-      </div>
+      <div class="chapter__copy chapter__copy--wide"><p class="chapter__kicker">VIDEO · FINAL PRESENTATION</p><h2>Walkthrough.</h2></div>
+      <div class="video-placeholder"><div class="video-placeholder__inner">
+        <svg viewBox="0 0 64 64" width="42" height="42"><circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="2.5"/><polygon points="26,20 50,32 26,44" fill="currentColor"/></svg>
+        <p>Video will be embedded after the final recording.</p>
+      </div></div>
     </div>
   </section>
 
-  <!-- CREDITS ────────────────────────────────────────────── -->
+  <!-- CREDITS -->
   <footer class="credits" id="credits">
     <div class="container">
-      <div class="credits__top">
-        <h2 class="credits__title">Credits &amp; acknowledgments</h2>
-        <span class="credits__seal">M126 · NKUA · 2026</span>
-      </div>
+      <div class="credits__top"><h2 class="credits__title">Credits</h2><span class="credits__seal">M126 · NKUA · 2026</span></div>
       <div class="credits__grid">
-        <article class="credits__card">
-          <span class="credits__role">D3 visualizations · web development · video</span>
-          <h3 class="credits__name">Letisja Muco <a class="credits__linkedin-icon" href="https://www.linkedin.com/in/letisjamuco/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.35 8.2h4.3V24H.35V8.2zM8.02 8.2h4.12v2.16h.06c.57-1.08 1.98-2.22 4.08-2.22 4.36 0 5.17 2.87 5.17 6.6V24h-4.3v-8.2c0-1.96-.04-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.34V24H8.02V8.2z"/></svg></a></h3>
-          <span class="credits__email">lmuco@di.uoa.gr</span>
-        </article>
-        <article class="credits__card">
-          <span class="credits__role">Oil &amp; fuel context</span>
-          <h3 class="credits__name">Eirini Katrantzi <a class="credits__linkedin-icon" href="https://www.linkedin.com/in/irini-katrantzi-661b33221/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.35 8.2h4.3V24H.35V8.2zM8.02 8.2h4.12v2.16h.06c.57-1.08 1.98-2.22 4.08-2.22 4.36 0 5.17 2.87 5.17 6.6V24h-4.3v-8.2c0-1.96-.04-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.34V24H8.02V8.2z"/></svg></a></h3>
-          <span class="credits__email">katreir@di.uoa.gr</span>
-        </article>
-        <article class="credits__card">
-          <span class="credits__role">Data cleaning</span>
-          <h3 class="credits__name">Alexandra Kaliakouda <a class="credits__linkedin-icon" href="https://www.linkedin.com/in/alexandra-kaliakouda-5b5b09162" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.35 8.2h4.3V24H.35V8.2zM8.02 8.2h4.12v2.16h.06c.57-1.08 1.98-2.22 4.08-2.22 4.36 0 5.17 2.87 5.17 6.6V24h-4.3v-8.2c0-1.96-.04-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.34V24H8.02V8.2z"/></svg></a></h3>
-          <span class="credits__email">kaliak@di.uoa.gr</span>
-        </article>
+        <article class="credits__card"><span class="credits__role">D3 · web dev · video</span><h3 class="credits__name">Letisja Muco <a class="credits__linkedin-icon" href="https://www.linkedin.com/in/letisjamuco/" target="_blank"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.35 8.2h4.3V24H.35V8.2zM8.02 8.2h4.12v2.16h.06c.57-1.08 1.98-2.22 4.08-2.22 4.36 0 5.17 2.87 5.17 6.6V24h-4.3v-8.2c0-1.96-.04-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.34V24H8.02V8.2z"/></svg></a></h3><span class="credits__email">lmuco@di.uoa.gr</span></article>
+        <article class="credits__card"><span class="credits__role">Oil &amp; fuel context</span><h3 class="credits__name">Eirini Katrantzi <a class="credits__linkedin-icon" href="https://www.linkedin.com/in/irini-katrantzi-661b33221/" target="_blank"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.35 8.2h4.3V24H.35V8.2zM8.02 8.2h4.12v2.16h.06c.57-1.08 1.98-2.22 4.08-2.22 4.36 0 5.17 2.87 5.17 6.6V24h-4.3v-8.2c0-1.96-.04-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.34V24H8.02V8.2z"/></svg></a></h3><span class="credits__email">katreir@di.uoa.gr</span></article>
+        <article class="credits__card"><span class="credits__role">Data cleaning</span><h3 class="credits__name">Alexandra Kaliakouda <a class="credits__linkedin-icon" href="https://www.linkedin.com/in/alexandra-kaliakouda-5b5b09162" target="_blank"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.35 8.2h4.3V24H.35V8.2zM8.02 8.2h4.12v2.16h.06c.57-1.08 1.98-2.22 4.08-2.22 4.36 0 5.17 2.87 5.17 6.6V24h-4.3v-8.2c0-1.96-.04-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.34V24H8.02V8.2z"/></svg></a></h3><span class="credits__email">kaliak@di.uoa.gr</span></article>
       </div>
-      <div class="credits__sources">
-        <h4 class="credits__sources-title">Data sources</h4>
+      <div class="credits__sources"><h4 class="credits__sources-title">Data sources</h4>
         <ul>
-          <li><a href="https://portwatch.imf.org/pages/data-and-methodology" target="_blank">IMF PortWatch — Daily Chokepoint Transit Calls</a></li>
-          <li><a href="https://portwatch.imf.org/pages/data-and-methodology" target="_blank">IMF PortWatch — Disruptions Database</a></li>
-          <li><a href="https://fred.stlouisfed.org/series/DCOILBRENTEU" target="_blank">FRED / U.S. EIA — Brent Crude Oil (DCOILBRENTEU)</a></li>
+          <li><a href="https://portwatch.imf.org" target="_blank">IMF PortWatch — Chokepoint Transit Calls &amp; Disruptions</a></li>
+          <li><a href="https://fred.stlouisfed.org/series/DCOILBRENTEU" target="_blank">FRED / U.S. EIA — Brent Crude (DCOILBRENTEU)</a></li>
           <li><a href="https://fred.stlouisfed.org/series/DJFUELUSGULF" target="_blank">FRED / U.S. EIA — Jet Fuel (DJFUELUSGULF)</a></li>
+          <li><a href="https://www.fuelprices.gr/deltia_dn.view" target="_blank">fuelprices.gr — Ελληνικές τιμές καυσίμων (Υπ. Ανάπτυξης)</a></li>
           <li><a href="https://www.eia.gov/todayinenergy/detail.php?id=65504" target="_blank">U.S. EIA Today in Energy — Hormuz context</a></li>
-          <li><a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors — basemap</a></li>
+          <li><a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap — basemap tiles</a></li>
         </ul>
       </div>
-      <div class="credits__bottom">
-        <p>M126 Data Visualization, Maria Roussou. Dept. of Informatics &amp; Telecommunications, NKUA.</p>
-      </div>
+      <div class="credits__bottom"><p>M126 Data Visualization, Maria Roussou. Dept. of Informatics &amp; Telecommunications, NKUA.</p></div>
     </div>
   </footer>
 
-  <div id="tooltip" class="tooltip" aria-hidden="true"></div>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <div id="tooltip" class="tooltip"></div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="script.js"></script>
 </body>
