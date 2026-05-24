@@ -1,22 +1,51 @@
 # Hormuz Under Pressure
 
-Interactive D3/Leaflet website using real public data only: IMF PortWatch, FRED/EIA, and official EIA context.
+An interactive data-story website about the Strait of Hormuz and how maritime chokepoint risk connects to tanker traffic, oil benchmarks, and fuel prices in Greece.
 
-## Run locally
+## What the project shows
 
-```powershell
-cd hormuz-under-pressure-real
-py -m http.server 8000
+1. Where the Strait of Hormuz is and why it matters as a narrow maritime gate.
+2. How Hormuz compares with other global chokepoints using tanker traffic metrics.
+3. How vessel traffic through Hormuz changed around the HORMUZ-26 disruption marker.
+4. Which origin countries and destination markets are connected to Hormuz oil flows.
+5. How global benchmark prices and Greek fuel prices moved downstream.
+6. Which Greek prefectures pay more for fuel, with interactive map and ranking views.
+
+## How to run
+
+This is a static website. Run it from a local server so the CSV files and map pages load correctly:
+
+```bash
+python3 -m http.server 8000
 ```
 
-Open: http://localhost:8000
+Then open:
 
-## Source data used
+```text
+http://localhost:8000
+```
 
-- `dataset.zip/portwatch/Daily_Chokepoints_Data.csv` → `data/processed/hormuz_daily.csv`, `chokepoints_daily.csv`, `chokepoints_summary.csv`, `hormuz_before_after.csv`
-- `dataset.zip/portwatch/Portwatch_Disruptions_Database.csv` → `data/processed/hormuz_events.csv`
-- `dataset.zip/brent_crude/DCOILBRENTEU.csv` → `data/processed/market_prices.csv`
-- `dataset.zip/jet_fuel/DJFUELUSGULF.csv` → `data/processed/market_prices.csv`
-- U.S. EIA Today in Energy article → context facts only, cited in the website.
+## Main files
 
-No Kaggle or synthetic datasets are used.
+- `index.html` - page structure and story chapters
+- `styles.css` - layout and visual styling
+- `script.js` - D3 charts and page interactions
+- `map-hormuz.html` - Strait of Hormuz map
+- `map-world.html` - global chokepoint comparison map
+- `map-flow.html` - Hormuz oil-flow map
+- `map-greece.html` - Greek prefecture fuel-price map
+- `data/processed/` - cleaned CSV datasets used by the website
+
+## Data sources
+
+- IMF PortWatch, chokepoint transit calls and disruption data
+- U.S. Energy Information Administration (EIA), Today in Energy, Strait of Hormuz context and flow data
+- Vortexa tanker tracking, cited by EIA for Hormuz origin and destination flows
+- FRED / U.S. EIA, Brent crude and U.S. Gulf Coast jet fuel benchmark series
+- fuelprices.gr / Hellenic Ministry of Development, Greek fuel-price data
+- click_that_hood / Code for Germany, Greece prefecture GeoJSON
+- OpenStreetMap, map tiles for the Leaflet maps
+
+## Notes
+
+The website uses cleaned and processed datasets derived from the sources above. Flow arcs are simplified geographic representations and should not be interpreted as AIS vessel trajectories.

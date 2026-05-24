@@ -14,13 +14,12 @@
   <nav class="nav">
     <a class="nav__brand" href="#hero"><span class="nav__code">M126</span><span class="nav__sep">·</span><span class="nav__title">HORMUZ UNDER PRESSURE</span></a>
     <ul class="nav__menu">
-      <li><a href="#ch1">01 Gate</a></li>
-      <li><a href="#ch2">02 System</a></li>
-      <li><a href="#ch3">03 Vessels</a></li>
-      <li><a href="#ch4">04 Traffic</a></li>
-      <li><a href="#ch5">05 Routes</a></li>
-      <li><a href="#ch6">06 Prices</a></li>
-      <li><a href="#video-section">Video</a></li>
+      <li><a href="#ch1">01 Narrow gate</a></li>
+      <li><a href="#ch2">02 World comparison</a></li>
+      <li><a href="#ch3">03 Vessel mix</a></li>
+      <li><a href="#ch5">04 Oil flows</a></li>
+      <li><a href="#ch6">05 Greek prices</a></li>
+      <li><a href="#video-section">06 Video</a></li>
       <li><a href="#credits">Credits</a></li>
     </ul>
     <div class="nav__progress"><div class="nav__progress-track"></div>
@@ -33,38 +32,25 @@
       <div class="hero__copy">
         <p class="eyebrow">IMF PortWatch · FRED/EIA · fuelprices.gr</p>
         <h1><span>Hormuz</span> Under Pressure</h1>
-        <p class="hero__lead">How a narrow maritime chokepoint concentrates energy risk — from tanker traffic and oil benchmarks to fuel prices at Greek petrol stations.</p>
-        <div class="hero__actions"><a class="btn" href="#ch1">Start the story</a><a class="btn btn--ghost" href="#credits">Data sources</a></div>
-      </div>
-      <div class="manifest-card" aria-hidden="true">
-        <div class="manifest-card__header"><span>MARITIME INTELLIGENCE BRIEF</span><span class="manifest-card__status">● ACTIVE</span></div>
-        <div class="manifest-card__body">
-          <div class="manifest-card__row"><div class="manifest-card__field"><label>SUBJECT</label><span>Strait of Hormuz</span></div><div class="manifest-card__field"><label>POSITION</label><span>26.3°N · 56.9°E</span></div></div>
-          <div class="manifest-card__row"><div class="manifest-card__field"><label>WIDTH</label><span>~33 km narrowest</span></div><div class="manifest-card__field"><label>DAILY OIL FLOW</label><span>~20M bbl/day</span></div></div>
-          <div class="manifest-card__divider"></div>
-          <div class="manifest-card__row"><div class="manifest-card__field manifest-card__field--alert"><label>EVENT</label><span>HORMUZ-26</span></div><div class="manifest-card__field manifest-card__field--alert"><label>DATE</label><span>1 Mar 2026</span></div><div class="manifest-card__field manifest-card__field--alert"><label>ALERT</label><span>RED</span></div></div>
-          <div class="manifest-card__row"><div class="manifest-card__field"><label>TRANSIT CHANGE</label><span id="hero-transit-change">loading…</span></div><div class="manifest-card__field"><label>BRENT CRUDE</label><span id="hero-brent">loading…</span></div></div>
-        </div>
-        <div class="manifest-card__footer"><span>SOURCE: IMF PORTWATCH · FRED/EIA</span><span>CLASSIFIED: M126/NKUA</span></div>
+        <p class="hero__lead">How a narrow maritime chokepoint concentrates energy risk - from tanker traffic and oil benchmarks to fuel prices at Greek petrol stations.</p>
+        <div class="hero__actions"><a class="btn" href="#ch1">Start the story</a><a class="btn btn--ghost" href="#credits">Data sources</a><a class="btn btn--ghost" href="#video-section">Watch the video</a></div>
+        <section class="storyline storyline--hero">
+          <div class="storyline__step"><span>1</span><strong>Locate the gate</strong><p>Where the risk sits.</p></div>
+          <div class="storyline__step"><span>2</span><strong>Compare globally</strong><p>Why Hormuz matters most.</p></div>
+          <div class="storyline__step"><span>3</span><strong>Read the ships</strong><p>How traffic changes.</p></div>
+          <div class="storyline__step"><span>4</span><strong>See the impact</strong><p>From tankers to fuel pumps.</p></div>
+        </section>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="storyline container">
-      <div class="storyline__step"><span>1</span><strong>Locate the gate</strong><p>Where the risk sits.</p></div>
-      <div class="storyline__step"><span>2</span><strong>Compare globally</strong><p>Why Hormuz matters most.</p></div>
-      <div class="storyline__step"><span>3</span><strong>Read the ships</strong><p>How traffic collapsed.</p></div>
-      <div class="storyline__step"><span>4</span><strong>See the impact</strong><p>From tankers to fuel pumps.</p></div>
-    </section>
-
-    <!-- CH01 — WHERE IS HORMUZ -->
-    <section class="chapter" id="ch1">
+<section class="chapter" id="ch1">
       <div class="container chapter__grid chapter__grid--map">
         <div class="chapter__copy">
           <p class="chapter__kicker">CH·01 · THE NARROW GATE</p>
           <h2>Where is the Strait of Hormuz?</h2>
-          <p>Between Iran, Oman and the UAE — at most 33 km wide at its narrowest navigable point.</p>
+          <p>Between Iran, Oman and the UAE - at most 33 km wide at its narrowest navigable point.</p>
           <div class="fact-grid">
             <article><strong>20M B/D</strong><span>oil through Hormuz (2024)</span></article>
             <article><strong>~20%</strong><span>of global petroleum</span></article>
@@ -79,106 +65,101 @@
         </div>
       </div>
     </section>
-
-    <!-- CH02 — HORMUZ vs THE WORLD -->
-    <section class="chapter" id="ch2">
+<section class="chapter" id="ch2">
       <div class="container">
-        <div class="chapter__copy chapter__copy--wide">
+        <div class="chapter__copy chapter__copy--wide chapter__copy--full">
           <p class="chapter__kicker">CH·02 · HORMUZ vs THE WORLD</p>
           <h2>Why does Hormuz matter more than any other chokepoint?</h2>
-          <p>There are 28 maritime chokepoints tracked by IMF PortWatch. Hormuz is not always the busiest by total ships — but when you look at <em>tanker traffic</em>, it stands apart. Click a chokepoint on the map or a bar in the ranking — they're linked.</p>
-        </div>
-        <div class="map-card">
-          <iframe src="map-world.html" id="world-map-iframe" class="map-iframe map-iframe--short" title="World chokepoints map" loading="lazy"></iframe>
-          <div class="map-caption">Circle size = avg daily tankers. Hormuz in orange. Click any chokepoint for details.</div>
-        </div>
-        <div class="viz-card" style="margin-top:14px">
-          <div class="viz-card__head">
-            <div><span class="mini-kicker">ranking · 2026 Jan–May</span><h3>Chokepoint comparison</h3></div>
-            <select id="rank-metric" class="select-control">
-              <option value="avg_tanker">Average daily tankers</option>
-              <option value="avg_total">Average daily transits (all types)</option>
-              <option value="avg_capacity">Average daily capacity</option>
-              <option value="tanker_share">Tanker share of traffic</option>
-            </select>
+          <p>There are 28 maritime chokepoints tracked by IMF PortWatch. The two filters answer different questions: one measures tanker volume, the other measures dependence on tankers inside each chokepoint's own traffic mix. Click a chokepoint on the map or a bar in the ranking, they are linked.</p>
+          <div class="metric-explainer metric-explainer--split metric-explainer--full">
+            <div><strong>Tankers per day</strong><span>The average number of tanker vessels crossing a chokepoint each day. This is an absolute traffic measure, so very busy routes can rank high simply because many tankers pass through them.</span></div>
+            <div><strong>Tankers as % of traffic</strong><span>The share of all vessels at that chokepoint that are tankers. This is a dependence measure: it shows how strongly a route is tied to oil traffic, even when the total ship count is lower.</span></div>
           </div>
-          <svg class="chart chart--rank" id="rank-chart"></svg>
-          <p class="chart-read" id="rank-read"></p>
         </div>
-      </div>
-    </section>
-
-    <!-- CH03 — VESSEL MIX + GLOSSARY -->
-    <section class="chapter" id="ch3">
-      <div class="container chapter__grid">
-        <div class="chapter__copy">
-          <p class="chapter__kicker">CH·03 · WHAT KIND OF SHIPS?</p>
-          <h2>Not all ships carry the same meaning.</h2>
-          <p>Tankers dominate the Hormuz vessel mix — making it primarily an <em>energy</em> chokepoint, not just a shipping lane. Hover over a vessel type to learn more.</p>
-          <div class="vessel-glossary" id="vessel-glossary">
-            <div class="vg-item" data-type="tanker"><dt><a href="https://en.wikipedia.org/wiki/Tanker_(ship)" target="_blank" rel="noopener">Tankers ↗</a></dt><dd>Ships carrying bulk liquids: crude oil, petroleum products, or gas cargoes.</dd></div>
-            <div class="vg-item" data-type="container"><dt><a href="https://en.wikipedia.org/wiki/Container_ship" target="_blank" rel="noopener">Containers ↗</a></dt><dd>Ships carrying standardised container boxes with consumer goods.</dd></div>
-            <div class="vg-item" data-type="dry_bulk"><dt><a href="https://en.wikipedia.org/wiki/Bulk_carrier" target="_blank" rel="noopener">Dry bulk ↗</a></dt><dd>Ships carrying unpackaged solids: grain, ore, coal.</dd></div>
-            <div class="vg-item" data-type="general_cargo"><dt><a href="https://en.wikipedia.org/wiki/General_cargo_ship" target="_blank" rel="noopener">General cargo ↗</a></dt><dd>Mixed goods not counted as containers, tankers or bulk.</dd></div>
-            <div class="vg-item" data-type="roro"><dt><a href="https://en.wikipedia.org/wiki/Roll-on/roll-off" target="_blank" rel="noopener">Ro-Ro ↗</a></dt><dd>Roll-on/roll-off: vehicles drive on/off the ship.</dd></div>
+        <div class="ch2-linked-grid">
+          <div class="map-card">
+            <iframe src="map-world.html" id="world-map-iframe" class="map-iframe map-iframe--linked" title="World chokepoints map" loading="lazy"></iframe>
+            <div class="map-caption">Circle size follows the selected metric. Hormuz in orange. Source: IMF PortWatch.</div>
           </div>
-          <p class="source-line">Data: IMF PortWatch, vessel-class transit calls for chokepoint6.</p>
-        </div>
-        <div class="viz-card">
-          <div class="viz-card__head"><div><span class="mini-kicker">composition · 2026 Jan–May</span><h3>Vessel mix through Hormuz</h3></div></div>
-          <svg class="chart chart--mix" id="mix-chart"></svg>
-          <p class="chart-read" id="mix-read"></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CH04 — TRAFFIC SIGNAL (focused on tankers) -->
-    <section class="chapter" id="ch4">
-      <div class="container chapter__grid">
-        <div class="chapter__copy">
-          <p class="chapter__kicker">CH·04 · TANKER TRAFFIC</p>
-          <h2>Traffic through Hormuz collapsed.</h2>
-          <p>Since tankers carry the energy, this is the signal that matters. Daily transit calls through the Strait — total and tanker — with 7-day average. Notice the sharp drop in March 2026.</p>
-          <p class="chapter__note">The HORMUZ-26 event marker (orange dashed line) is from the PortWatch disruptions database.</p>
-          <p class="source-line">Data: IMF PortWatch, Daily Chokepoint Transit Calls.</p>
-        </div>
-        <div>
-          <div class="viz-card">
-            <div class="viz-card__head">
-              <div><span class="mini-kicker">daily transits · 7-day avg</span><h3>Hormuz traffic</h3></div>
-              <div class="control-pills" id="traffic-periods"></div>
+          <div class="viz-card viz-card--linked">
+            <div class="viz-card__head viz-card__head--rank-title">
+              <div><span class="mini-kicker" id="rank-kicker">ranking · before HORMUZ-26</span><h3>Chokepoint comparison</h3><p class="viz-subhead">Top 15 chokepoints, with Hormuz kept visible when needed.</p></div>
             </div>
-            <div class="metric-row" id="traffic-metrics"></div>
-            <svg class="chart" id="traffic-chart"></svg>
-            <p class="chart-read" id="traffic-read"></p>
+            <div class="rank-filter-panel">
+              <div class="filter-group filter-group--inline">
+                <span class="filter-label">Period</span>
+                <div class="control-pills" id="rank-period-pills"></div>
+              </div>
+              <div class="filter-group filter-group--inline">
+                <span class="filter-label">Metric</span>
+                <div class="control-pills" id="rank-metric-pills"></div>
+              </div>
+              <button type="button" class="btn-reset" id="rank-clear-selection">Clear selection</button>
+            </div>
+            <svg class="chart chart--rank chart--rank-linked" id="rank-chart"></svg>
+            <p class="chart-read" id="rank-read"></p>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- CH05 — ROUTES + IMPACT TIMELINE -->
-    <section class="chapter" id="ch5">
+<section class="chapter" id="ch3">
       <div class="container">
         <div class="chapter__copy chapter__copy--wide">
-          <p class="chapter__kicker">CH·05 · ROUTES &amp; IMPACT</p>
-          <h2>Where do the tankers go — and what happened after HORMUZ-26?</h2>
-          <p>Oil-exporting ports around the Gulf funnel their cargoes through Hormuz. When the disruption hit, transits, tankers and Brent crude all responded.</p>
+          <p class="chapter__kicker">CH·03 · VESSELS &amp; TRAFFIC</p>
+          <h2>What kinds of ships pass Hormuz - and how does traffic break down under pressure?</h2>
+          <p>Use the filter to switch between the 2026 shock window and the full record. The goal here is simple: show that tankers dominate the mix, and show how each vessel class changes around the disruption.</p>
+          <p class="source-line">Data: IMF PortWatch, vessel-class transit calls for chokepoint6.</p>
         </div>
-        <div class="map-card">
-          <iframe src="map-flow.html" class="map-iframe" title="Oil export routes through Hormuz" loading="lazy"></iframe>
-          <div class="map-caption">Arc thickness ∝ estimated daily tanker volume. Routes are illustrative, not AIS trajectories. Zoom with mouse wheel.</div>
+        <div class="ch3-main-grid ch3-main-grid--minimal">
+          <div class="viz-card">
+            <div class="viz-card__head">
+              <div><span class="mini-kicker">daily composition</span><h3>How the ship mix changed</h3></div>
+              <div class="control-pills" id="traffic-periods"></div>
+            </div>
+            <svg class="chart chart--mix-area" id="mix-area-chart"></svg>
+            <p class="chart-read" id="mix-area-read"></p>
+          </div>
+          <div class="viz-card viz-card--compact viz-card--mix-side">
+            <div class="viz-card__head"><div><span class="mini-kicker">composition summary</span><h3>Vessel mix through Hormuz</h3></div></div>
+            <svg class="chart chart--mix" id="mix-chart"></svg>
+            <div class="vessel-glossary vessel-glossary--compact" id="vessel-glossary">
+              <div class="vg-item"><dt>Tankers</dt><dd>Oil, products, gas cargoes.</dd></div>
+              <div class="vg-item"><dt>Containers</dt><dd>Standardised box cargo.</dd></div>
+              <div class="vg-item"><dt>Dry bulk</dt><dd>Ore, grain, coal.</dd></div>
+              <div class="vg-item"><dt>General cargo</dt><dd>Mixed conventional cargo.</dd></div>
+              <div class="vg-item"><dt>Ro-Ro</dt><dd>Roll-on, roll-off vehicle transport.</dd></div>
+            </div>
+            <p class="chart-read" id="mix-read"></p>
+          </div>
         </div>
-        <div class="viz-card" style="margin-top:14px">
-          <div class="viz-card__head"><div><span class="mini-kicker">synchronized timeline · Jan–May 2026</span><h3>Three signals, one event</h3></div></div>
-          <svg class="chart chart--impact" id="impact-chart"></svg>
-          <p class="chart-read" id="impact-read"></p>
-        </div>
-        <div class="before-after-grid" id="before-after-grid"></div>
       </div>
     </section>
-
-    <!-- CH06 — PRICES (global + Greece) -->
-    <section class="chapter" id="ch6">
+<section class="chapter" id="ch5">
+      <div class="container">
+        <div class="chapter__copy chapter__copy--wide">
+          <p class="chapter__kicker">CH·05 · ROUTES &amp; DESTINATIONS</p>
+          <h2>Which countries send oil through Hormuz - and which markets depend on it?</h2>
+          <p>Using cleaned EIA figure data based on Vortexa tanker tracking, this chapter focuses on the country side of the story: origin exporters and the main named destination markets in 2024. Grouped regions are omitted here to keep the picture clear.</p>
+        </div>
+        <div class="map-card flow-map-card">
+          <iframe src="map-flow.html" class="map-iframe map-iframe--flow" title="Origin countries through Hormuz" loading="lazy"></iframe>
+          <div class="map-caption">Origin countries through Hormuz. Arc thickness shows 2024 flow volume. Source: EIA/Vortexa.</div>
+        </div>
+        <div class="ch5-flow-grid">
+          <div class="viz-card">
+            <div class="viz-card__head"><div><span class="mini-kicker">EIA/Vortexa · 2024</span><h3>Origin countries through Hormuz</h3></div></div>
+            <svg class="chart chart--destination" id="origin-chart"></svg>
+            <p class="chart-read" id="origin-read"></p>
+          </div>
+          <div class="viz-card">
+            <div class="viz-card__head"><div><span class="mini-kicker">EIA/Vortexa · 2024</span><h3>Top destination markets</h3></div></div>
+            <svg class="chart chart--destination" id="destination-chart"></svg>
+            <p class="chart-read" id="destination-read"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+<section class="chapter" id="ch6">
       <div class="container">
         <div class="chapter__copy chapter__copy--wide">
           <p class="chapter__kicker">CH·06 · FROM BARREL TO PUMP</p>
@@ -200,17 +181,31 @@
             <p class="chart-read" id="greece-read"></p>
           </div>
         </div>
-        <div class="viz-card" style="margin-top:14px">
-          <div class="viz-card__head"><div><span class="mini-kicker">Greece · A95 by prefecture</span><h3>Which prefectures pay most?</h3></div></div>
-          <svg class="chart chart--rank" id="nomos-chart"></svg>
-          <p class="chart-read">Latest weekly average for Unleaded 95 by prefecture. Islands typically pay the highest prices. Data: fuelprices.gr, Hellenic Ministry of Development.</p>
+        <div class="ch6-map-rank-grid">
+          <div class="map-card">
+            <iframe src="map-greece.html" id="greece-map-iframe" class="map-iframe map-iframe--greece" title="Greek prefectures fuel price map" loading="lazy"></iframe>
+            <div class="map-caption">Only Greece is shown. Hover for preview; click a prefecture to focus it in the list. Source: fuelprices.gr, Hellenic Ministry of Development.</div>
+          </div>
+          <div class="viz-card viz-card--linked">
+            <div class="viz-card__head viz-card__head--stack nomos-head">
+              <div class="nomos-title-wrap"><span class="mini-kicker">Greece · fuel by prefecture</span><h3>Which prefectures pay most?</h3></div>
+              <div class="controls-stack controls-stack--nomos controls-stack--full">
+                <div class="control-pills control-pills--wrap" id="nomos-mode-pills"></div>
+                <div class="control-pills control-pills--wrap" id="nomos-fuel-pills"></div>
+                <div class="nomos-search-wrap">
+                  <label for="nomos-search" class="sr-only">Search prefecture</label>
+                  <input id="nomos-search" class="search-control" type="search" placeholder="Search a prefecture…" autocomplete="off" />
+                </div>
+              </div>
+            </div>
+            <svg class="chart chart--nomos-dynamic" id="nomos-chart"></svg>
+            <p class="chart-read" id="nomos-read">Switch between latest fuel price and change since 2026-02-28, the last day before HORMUZ-26.</p>
+          </div>
         </div>
       </div>
     </section>
   </main>
-
-  <!-- VIDEO -->
-  <section class="chapter chapter--video" id="video-section">
+<section class="chapter chapter--video" id="video-section">
     <div class="container">
       <div class="chapter__copy chapter__copy--wide"><p class="chapter__kicker">VIDEO · FINAL PRESENTATION</p><h2>Walkthrough.</h2></div>
       <div class="video-placeholder"><div class="video-placeholder__inner">
@@ -219,9 +214,7 @@
       </div></div>
     </div>
   </section>
-
-  <!-- CREDITS -->
-  <footer class="credits" id="credits">
+<footer class="credits" id="credits">
     <div class="container">
       <div class="credits__top"><h2 class="credits__title">Credits</h2><span class="credits__seal">M126 · NKUA · 2026</span></div>
       <div class="credits__grid">
@@ -231,12 +224,13 @@
       </div>
       <div class="credits__sources"><h4 class="credits__sources-title">Data sources</h4>
         <ul>
-          <li><a href="https://portwatch.imf.org" target="_blank">IMF PortWatch — Chokepoint Transit Calls &amp; Disruptions</a></li>
-          <li><a href="https://fred.stlouisfed.org/series/DCOILBRENTEU" target="_blank">FRED / U.S. EIA — Brent Crude (DCOILBRENTEU)</a></li>
-          <li><a href="https://fred.stlouisfed.org/series/DJFUELUSGULF" target="_blank">FRED / U.S. EIA — Jet Fuel (DJFUELUSGULF)</a></li>
-          <li><a href="https://www.fuelprices.gr/deltia_dn.view" target="_blank">fuelprices.gr — Ελληνικές τιμές καυσίμων (Υπ. Ανάπτυξης)</a></li>
-          <li><a href="https://www.eia.gov/todayinenergy/detail.php?id=65504" target="_blank">U.S. EIA Today in Energy — Hormuz context</a></li>
-          <li><a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap — basemap tiles</a></li>
+          <li><a href="https://portwatch.imf.org" target="_blank">IMF PortWatch - Chokepoint Transit Calls &amp; Disruptions</a></li>
+          <li><a href="https://fred.stlouisfed.org/series/DCOILBRENTEU" target="_blank">FRED / U.S. EIA - Brent Crude (DCOILBRENTEU)</a></li>
+          <li><a href="https://fred.stlouisfed.org/series/DJFUELUSGULF" target="_blank">FRED / U.S. EIA - Jet Fuel (DJFUELUSGULF)</a></li>
+          <li><a href="https://www.fuelprices.gr/deltia_dn.view" target="_blank">fuelprices.gr - Ελληνικές τιμές καυσίμων (Υπ. Ανάπτυξης)</a></li>
+          <li><a href="https://www.eia.gov/todayinenergy/detail.php?id=65504" target="_blank">U.S. EIA Today in Energy - Hormuz context and destination flows</a></li>
+          <li><a href="https://github.com/codeforgermany/click_that_hood/blob/main/public/data/greece-prefectures.geojson" target="_blank">click_that_hood / Code for Germany - Greece prefecture GeoJSON</a></li>
+          <li><a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap - basemap tiles</a></li>
         </ul>
       </div>
       <div class="credits__bottom"><p>M126 Data Visualization, Maria Roussou. Dept. of Informatics &amp; Telecommunications, NKUA.</p></div>

@@ -7,8 +7,9 @@
 <div id="map"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-var map=L.map('map',{scrollWheelZoom:true,zoomControl:true}).setView([26.35,56.65],7);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:14,attribution:'© OSM'}).addTo(map);
+var worldBounds=[[-85,-180],[85,180]];
+var map=L.map('map',{scrollWheelZoom:true,zoomControl:true,minZoom:2,worldCopyJump:false}).setView([26.35,56.65],6);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:14,noWrap:true,bounds:worldBounds,attribution:'© OSM'}).addTo(map);
 L.rectangle([[25.80,55.65],[26.85,57.75]],{color:'#d36a38',weight:2,fillColor:'#d36a38',fillOpacity:.08,dashArray:'6 7'}).addTo(map).bindPopup('<strong>Strait of Hormuz</strong><br>PortWatch chokepoint area.');
 L.polyline([[25.98,55.95],[26.14,56.26],[26.28,56.58],[26.36,56.9],[26.48,57.25]],{color:'#0f4d46',weight:4,opacity:.85}).addTo(map);
 var ic=L.divIcon({className:'',html:'<div style="width:14px;height:14px;border-radius:50%;background:#d36a38;border:2px solid white;box-shadow:0 2px 8px rgba(0,0,0,.3)"></div>',iconSize:[14,14]});

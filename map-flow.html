@@ -2,30 +2,36 @@
 <html><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<style>html,body{margin:0;padding:0;height:100%;overflow:hidden}#map{width:100%;height:100%}</style>
+<style>
+html,body{margin:0;padding:0;height:100%;overflow:hidden}#map{width:100%;height:100%}
+.legend{position:absolute;left:12px;bottom:12px;z-index:500;background:rgba(255,255,255,.93);border:1px solid rgba(14,74,66,.14);border-radius:12px;padding:8px 10px;font:11px/1.35 'Space Mono',monospace;color:#1e5a51;box-shadow:0 10px 24px -18px rgba(8,44,40,.45)}
+.legend span{display:inline-block;width:18px;height:6px;border-radius:99px;margin-right:6px;vertical-align:middle}.legend strong{display:block;color:#082c28;margin-bottom:4px}
+</style>
 </head><body>
 <div id="map"></div>
+<div class="legend"><strong>Origin countries through Hormuz</strong><div><span style="background:#d36a38"></span>2024 flow values (million b/d)</div></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script>
-var map=L.map('map',{scrollWheelZoom:true,zoomControl:true}).setView([25.5,54],6);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:12,attribution:'© OSM'}).addTo(map);
-var hz=[26.35,56.65];
-var origins=[
-  {name:'Saudi Arabia (Ras Tanura)',ll:[26.64,50.17],vol:6.2},
-  {name:'Iraq (Basra)',ll:[29.73,48.82],vol:3.4},
-  {name:'UAE (Fujairah)',ll:[25.13,56.35],vol:2.8},
-  {name:'Kuwait (Mina al-Ahmadi)',ll:[29.06,48.16],vol:1.8},
-  {name:'Qatar (Ras Laffan)',ll:[25.92,51.56],vol:1.4},
-  {name:'Iran (Kharg Island)',ll:[29.23,50.33],vol:1.7}
-];
-var mx=6.2;
-origins.forEach(function(o){
-  var mid=[(o.ll[0]+hz[0])/2+.8,(o.ll[1]+hz[1])/2-1.2];
-  var w=Math.max(2,(o.vol/mx)*7);
-  L.polyline([o.ll,mid,hz],{color:'#d36a38',weight:w,opacity:.55,smoothFactor:2}).addTo(map).bindPopup('<strong>'+o.name+'</strong><br>~'+o.vol+'M b/d through Hormuz');
-  L.circleMarker(o.ll,{radius:5,color:'#0f4d46',fillColor:'#d36a38',fillOpacity:.8,weight:1}).addTo(map).bindPopup('<strong>'+o.name+'</strong><br>~'+o.vol+'M barrels/day');
+const worldBounds=[[-85,-180],[85,180]];
+const map=L.map('map',{scrollWheelZoom:true,zoomControl:true,minZoom:1,worldCopyJump:false}).setView([25,52],4);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:12,noWrap:true,bounds:worldBounds,attribution:'© OSM'}).addTo(map);
+const hz=[26.35,56.65], orange='#d36a38';
+const fM=d3.format(',.1f');
+const curve=(a,b)=>[a,[(a[0]+b[0])/2 + .9,(a[1]+b[1])/2 - 1.2],b];
+const weight=(v,max)=>Math.max(2,Math.sqrt(v/max)*8);
+d3.csv('data/processed/hormuz_origin_flows.csv',d=>({...d,lat:+d.lat,lon:+d.lon,mbd_2024:+d.mbd_2024,share_2024:+d.share_2024||null,is_aggregate:d.is_aggregate==='yes'})).then(origins=>{
+  const rows=origins.filter(d=>!d.is_aggregate && Number.isFinite(d.lat) && Number.isFinite(d.lon));
+  const max=d3.max(rows,d=>d.mbd_2024)||1;
+  rows.forEach(o=>{
+    const ll=[o.lat,o.lon];
+    L.polyline(curve(ll,hz),{color:orange,weight:weight(o.mbd_2024,max),opacity:.62,smoothFactor:2}).addTo(map)
+      .bindPopup(`<strong>${o.label}</strong><br>${fM(o.mbd_2024)} million b/d through Hormuz<br><em>EIA figure data, 2024</em>`);
+    L.circleMarker(ll,{radius:5,color:'#0f4d46',fillColor:orange,fillOpacity:.85,weight:1}).addTo(map)
+      .bindPopup(`<strong>${o.label}</strong><br>${fM(o.mbd_2024)} million b/d`);
+  });
+  L.circleMarker(hz,{radius:8,color:orange,fillColor:orange,fillOpacity:.18,weight:2,dashArray:'4 4'}).addTo(map);
+  L.circleMarker(hz,{radius:3,color:orange,fillColor:orange,fillOpacity:1,weight:0}).addTo(map).bindPopup('<strong>Strait of Hormuz</strong>');
 });
-L.circleMarker(hz,{radius:8,color:'#d36a38',fillColor:'#d36a38',fillOpacity:.25,weight:2,dashArray:'4 4'}).addTo(map);
-L.circleMarker(hz,{radius:3,color:'#d36a38',fillColor:'#d36a38',fillOpacity:1,weight:0}).addTo(map).bindPopup('<strong>Strait of Hormuz</strong><br>All routes converge here');
 </script>
 </body></html>
